@@ -60,6 +60,7 @@ typedef enum {
     BF20A6_SCCB_ADDR   = 0x6E,
 } camera_sccb_addr_t;
 
+
 typedef enum {
     PIXFORMAT_RGB565,    // 2BPP/RGB565
     PIXFORMAT_YUV422,    // 2BPP/YUV422

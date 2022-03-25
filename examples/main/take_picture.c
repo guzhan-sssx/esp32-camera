@@ -1,5 +1,6 @@
 /**
  * This example takes a picture every 5s and print its size on serial monitor.
+ * 没5s拍摄一张照片
  */
 
 // =============================== SETUP ======================================
@@ -45,7 +46,7 @@
 
 #include "esp_camera.h"
 
-#define BOARD_WROVER_KIT 1
+#define BOARD_ESP32CAM_AITHINKER 1
 
 // WROVER-KIT PIN Map
 #ifdef BOARD_WROVER_KIT
@@ -142,6 +143,7 @@ static esp_err_t init_camera()
 
 void app_main()
 {
+    //判断相机是否初始化
     if(ESP_OK != init_camera()) {
         return;
     }

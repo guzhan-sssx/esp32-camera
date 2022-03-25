@@ -22,7 +22,7 @@ extern "C" {
 #endif
 
 /**
- * @brief Uninitialize the lcd_cam module
+ * @brief 解密LCD_CAM模块
  *
  * @param handle Provide handle pointer to release resources
  *

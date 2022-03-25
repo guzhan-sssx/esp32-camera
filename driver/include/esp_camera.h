@@ -76,10 +76,10 @@ extern "C" {
 #endif
 
 /**
- * @brief Configuration structure for camera initialization
+ * @brief 相机初始化配置结构
  */
 typedef enum {
-    CAMERA_GRAB_WHEN_EMPTY,         /*!< Fills buffers when they are empty. Less resources but first 'fb_count' frames might be old */
+    CAMERA_GRAB_WHEN_EMPTY,         /*!< 当它们为空时填充缓冲区。 资源较少，但首先'fb_count'框架可能是旧的*/
     CAMERA_GRAB_LATEST              /*!< Except when 1 frame buffer is used, queue will always contain the last 'fb_count' frames */
 } camera_grab_mode_t;
 
@@ -117,25 +117,25 @@ typedef struct {
     ledc_timer_t ledc_timer;        /*!< LEDC timer to be used for generating XCLK  */
     ledc_channel_t ledc_channel;    /*!< LEDC channel to be used for generating XCLK  */
 
-    pixformat_t pixel_format;       /*!< Format of the pixel data: PIXFORMAT_ + YUV422|GRAYSCALE|RGB565|JPEG  */
-    framesize_t frame_size;         /*!< Size of the output image: FRAMESIZE_ + QVGA|CIF|VGA|SVGA|XGA|SXGA|UXGA  */
+    pixformat_t pixel_format;       /*!< 像素数据的格式: PIXFORMAT_ + YUV422|GRAYSCALE|RGB565|JPEG  */
+    framesize_t frame_size;         /*!< 输出图像的大小: FRAMESIZE_ + QVGA|CIF|VGA|SVGA|XGA|SXGA|UXGA  */
 
-    int jpeg_quality;               /*!< Quality of JPEG output. 0-63 lower means higher quality  */
-    size_t fb_count;                /*!< Number of frame buffers to be allocated. If more than one, then each frame will be acquired (double speed)  */
-    camera_fb_location_t fb_location; /*!< The location where the frame buffer will be allocated */
-    camera_grab_mode_t grab_mode;   /*!< When buffers should be filled */
+    int jpeg_quality;               /*!< Quality of JPEG output. 0-63 lower means higher quality数字越小质量越高  */
+    size_t fb_count;                /*!< 要分配的帧缓冲区数量. If more than one, then each frame will be acquired (double speed)  */
+    camera_fb_location_t fb_location; /*!< 将分配帧缓冲区的位置 */
+    camera_grab_mode_t grab_mode;   /*!< 缓冲区应该填写 */
 } camera_config_t;
 
 /**
- * @brief Data structure of camera frame buffer
+ * @brief 相机帧缓冲区的数据结构
  */
 typedef struct {
     uint8_t * buf;              /*!< Pointer to the pixel data */
     size_t len;                 /*!< Length of the buffer in bytes */
     size_t width;               /*!< Width of the buffer in pixels */
     size_t height;              /*!< Height of the buffer in pixels */
-    pixformat_t format;         /*!< Format of the pixel data */
-    struct timeval timestamp;   /*!< Timestamp since boot of the first DMA buffer of the frame */
+    pixformat_t format;         /*!< 像素数据的格式 */
+    struct timeval timestamp;   /*!< SimeStamp自帧的第一个DMA缓冲区的启动 */
 } camera_fb_t;
 
 #define ESP_ERR_CAMERA_BASE 0x20000
@@ -172,21 +172,21 @@ esp_err_t esp_camera_init(const camera_config_t* config);
 esp_err_t esp_camera_deinit();
 
 /**
- * @brief Obtain pointer to a frame buffer.
+ * @brief 获取到帧缓冲区的指针。
  *
  * @return pointer to the frame buffer
  */
 camera_fb_t* esp_camera_fb_get();
 
 /**
- * @brief Return the frame buffer to be reused again.
+ * @brief 返回帧缓冲区再次重复使用.
  *
  * @param fb    Pointer to the frame buffer
  */
 void esp_camera_fb_return(camera_fb_t * fb);
 
 /**
- * @brief Get a pointer to the image sensor control structure
+ * @brief 获取图像传感器控制结构的指针
  *
  * @return pointer to the sensor
  */
